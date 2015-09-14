@@ -1,0 +1,5 @@
+customer_order_customer:
+    resource: "@CustomerOrderCustomerBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
