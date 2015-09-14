@@ -2,9 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    {% stylesheets '@CustomerOrderCustomerBundle/Resources/public/css/*' filter='cssrewrite' %}
-        <link rel="stylesheet" href="{{ asset_url }}" />
-    {% endstylesheets %}
+    <link rel="stylesheet" href="{{ asset('customerOrder/css/customer.css') }}" />
 
     <title>Customers</title>
 </head>
@@ -25,7 +23,6 @@
     <div class="test">
     </div>
 </div>
-
-{{ require_js_initialize({ 'main' : 'demo/main' }) }}
+<script type="text/javascript" data-main="{{ asset('customerOrder/main.js') }}" src="{{ asset('customerOrder/bower_components/requirejs/require.js') }}"></script>
 </body>
 </html>
