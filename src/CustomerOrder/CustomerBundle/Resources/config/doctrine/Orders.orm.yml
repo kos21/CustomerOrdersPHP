@@ -1,0 +1,46 @@
+CustomerOrder\CustomerBundle\Entity\Orders:
+    type: entity
+    table: ORDERS
+    repositoryClass: CustomerOrder\CustomerBundle\Repository\OrdersRepository
+    indexes:
+        FK_ORDERS_CUSTOMERS_CUSTOMER_ID:
+            columns:
+                - CUSTOMER_ID
+    id:
+        orderId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: ORDER_ID
+            generator:
+                strategy: IDENTITY
+    fields:
+        postedAt:
+            type: datetime
+            nullable: true
+            column: POSTED_AT
+        amount:
+            type: string
+            nullable: true
+            length: 30
+            options:
+                fixed: false
+            column: AMOUNT
+        paidAt:
+            type: datetime
+            nullable: true
+            column: PAID_AT
+    manyToOne:
+        customer:
+            targetEntity: Customers
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                CUSTOMER_ID:
+                    referencedColumnName: CUSTOMER_ID
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

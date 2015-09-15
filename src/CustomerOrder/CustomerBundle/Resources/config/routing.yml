@@ -1,3 +1,12 @@
 customer_order_customer_homepage:
     path:     /
     defaults: { _controller: CustomerOrderCustomerBundle:Default:index }
+
+get_list_customers:
+    path: /get/list/customers/
+    defaults: { _controller:  CustomerOrderCustomerBundle:CustomerOrder:getListCustomers }
+
+add_customer:
+    path: /add/customer/
+    methods: POST
+    defaults: { _controller: CustomerOrderCustomerBundle:CustomerOrder:addCustomer }

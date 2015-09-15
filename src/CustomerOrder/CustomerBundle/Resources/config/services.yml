@@ -1,4 +1,15 @@
+parameters:
+  customer_model.class: CustomerOrder\CustomerBundle\Models\CustomerModel
+
 services:
+   customer_model:
+      class: "%customer_model.class%"
+      arguments: [ "@doctrine.orm.entity_manager" ]
+
+
 #    customer_order_customer.example:
 #        class: CustomerOrder\CustomerBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+
+

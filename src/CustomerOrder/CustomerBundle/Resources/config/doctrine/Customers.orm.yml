@@ -1,0 +1,42 @@
+CustomerOrder\CustomerBundle\Entity\Customers:
+    type: entity
+    table: CUSTOMERS
+    repositoryClass: CustomerOrder\CustomerBundle\Repository\CustomersRepository
+    uniqueConstraints:
+        UK_table1_CUSTOMER_ID:
+            columns:
+                - CUSTOMER_ID
+    id:
+        customerId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            id: true
+            column: CUSTOMER_ID
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+            column: NAME
+        phone:
+            type: string
+            nullable: true
+            length: 30
+            options:
+                fixed: false
+            column: PHONE
+        address:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: ADDRESS
+    lifecycleCallbacks: {  }
