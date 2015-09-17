@@ -4,6 +4,7 @@ namespace CustomerOrder\CustomerBundle\Models;
 
 use CustomerOrder\CustomerBundle\Entity\Customers;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Query;
 
 /**
  * Created by PhpStorm.
@@ -36,6 +37,28 @@ class CustomerModel extends AbstractModel
             ->getArrayResult();
     }
 
+    /**
+     * Get customer info
+     *
+     * @param integer $customerId
+     *
+     * @return array
+     */
+    public function getCustomerInfo($customerId)
+    {
+        return $this->getEntityManager()
+            ->getRepository("CustomerOrderCustomerBundle:Customers")
+            ->getCustomerInfoByCustomerId($customerId)
+            ->getResult();
+    }
+
+    /**
+     * Add customer
+     *
+     * @param string $name
+     * @param integer $phone
+     * @param string $address
+     */
     public function addCustomer($name, $phone, $address)
     {
         $customerEntity = new Customers();
@@ -43,6 +66,26 @@ class CustomerModel extends AbstractModel
         $customerEntity->setName($name);
         $customerEntity->setPhone($phone);
 
+        $this->getEntityManager()->persist($customerEntity);
+        $this->getEntityManager()->flush();
+    }
 
+    /**
+     * Edit customer
+     *
+     * @param integer $phone
+     * @param string $name
+     * @param string $address
+     * @param integer $customerId
+     */
+    public function editCustomer($phone, $name, $address, $customerId)
+    {
+        $this->getEntityManager()->getRepository("CustomerOrderCustomerBundle:Customers")
+            ->updateCustomer(
+                $phone,
+                $name,
+                $address,
+                $customerId
+            )->execute();
     }
 }

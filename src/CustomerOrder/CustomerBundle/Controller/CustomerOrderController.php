@@ -18,13 +18,12 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class CustomerOrderController extends Controller
 {
-
     /**
      * Get list orders
      */
     public function getListOrdersAction()
     {
-
+         return new Response(json_encode($this->get("orders_model")->getListOrders($this->get("request")->query->get("customer_id"))));
     }
 
     /**
@@ -34,11 +33,52 @@ class CustomerOrderController extends Controller
      */
     public function addCustomerAction()
     {
-        $customerData = json_decode($this->get("request")->request->get("customerData"), true);
+        $this->get("customer_model")->addCustomer(
+            $this->get("request")->request->get("name"),
+            $this->get("request")->request->get("phone"),
+            $this->get("request")->request->get("address")
+        );
 
-        if(empty($customerData)) return new Response("{status: false}");
+        return new Response("{ status: true }");
+    }
 
-        $this->get("customer_model")->addCustomer($customerData["name"], $customerData["phone"], $customerData["address"]);
+    /**
+     * Edit customer action
+     */
+    public function editCustomerAction()
+    {
+        $name = $this->get("request")->request->get("name");
+        $phone = $this->get("request")->request->get("phone");
+        $address = $this->get("request")->request->get("address");
+
+        $this->get("customer_model")->editCustomer($phone, $name, $address, $this->get("request")->request->get("customerId"));
+
+        return new Response("{status: true}");
+    }
+
+    /**
+     * Get infor customer update action
+     *
+     * @return Response
+     */
+    public function getInfoCustomerUpdateAction()
+    {
+        $customerId = $this->get("request")->request->get("customer_id");
+
+        return new Response(json_encode($this->get("customer_model")->getCustomerInfo($customerId)));
+    }
+
+    /**
+     * Add order action
+     */
+    public function addOrderAction()
+    {
+        $postedAt = $this->get("request")->request->get("posted_at");
+        $amount = $this->get("request")->request->get("amount");
+        $paidAt = $this->get("request")->request->get("paid_at");
+        $customerId = $this->get("request")->request->get("customerId");
+
+        $this->get("orders_model")->addOrderData($amount, $postedAt, $paidAt, $customerId);
 
         return new Response("{ status: true}");
     }

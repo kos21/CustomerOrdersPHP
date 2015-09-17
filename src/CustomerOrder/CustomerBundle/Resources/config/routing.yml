@@ -10,3 +10,22 @@ add_customer:
     path: /add/customer/
     methods: POST
     defaults: { _controller: CustomerOrderCustomerBundle:CustomerOrder:addCustomer }
+
+get_info_customer_update:
+    path: /get/info/customer/update/
+    methods: POST
+    defaults: { _controller: CustomerOrderCustomerBundle:CustomerOrder:getInfoCustomerUpdate }
+
+get_list_orders:
+    path: /get/list/orders/
+    defaults: { _controller: CustomerOrderCustomerBundle:CustomerOrder:getListOrders }
+
+edit_customer:
+    path: /edit/customer/
+    methods: POST
+    defaults: { _controller: CustomerOrderCustomerBundle:CustomerOrder:editCustomer }
+add_order:
+    path: /add/order/
+    methods: POST
+    defaults: { _controller: CustomerOrderCustomerBundle:CustomerOrder:addOrder }
+

@@ -1,9 +1,13 @@
 parameters:
   customer_model.class: CustomerOrder\CustomerBundle\Models\CustomerModel
+  orders_model.class: CustomerOrder\CustomerBundle\Models\OrdersModel
 
 services:
    customer_model:
       class: "%customer_model.class%"
+      arguments: [ "@doctrine.orm.entity_manager" ]
+   orders_model:
+      class: "%orders_model.class%"
       arguments: [ "@doctrine.orm.entity_manager" ]
 
 
