@@ -18,14 +18,21 @@ get_info_customer_update:
 
 get_list_orders:
     path: /get/list/orders/
+    methods: POST
     defaults: { _controller: CustomerOrderCustomerBundle:CustomerOrder:getListOrders }
 
 edit_customer:
     path: /edit/customer/
     methods: POST
     defaults: { _controller: CustomerOrderCustomerBundle:CustomerOrder:editCustomer }
+
 add_order:
     path: /add/order/
     methods: POST
     defaults: { _controller: CustomerOrderCustomerBundle:CustomerOrder:addOrder }
+
+delete_customer:
+    path: /delete/customer/
+    methods: POST
+    defaults: { _controller: CustomerOrderCustomerBundle:CustomerOrder:deleteCustomer }
 

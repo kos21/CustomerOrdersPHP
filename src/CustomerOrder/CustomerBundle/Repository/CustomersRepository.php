@@ -68,4 +68,14 @@ class CustomersRepository extends EntityRepository
 
         return $query->getQuery();
     }
+
+    public function deleteCustomer($customerId)
+    {
+        $query = $this->createQueryBuilder("c")
+            ->delete()
+            ->where("c.customerId=:customerId")
+            ->setParameter("customerId", $customerId);
+
+        return $query->getQuery();
+    }
 }

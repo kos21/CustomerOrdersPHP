@@ -23,7 +23,19 @@ class CustomerOrderController extends Controller
      */
     public function getListOrdersAction()
     {
-         return new Response(json_encode($this->get("orders_model")->getListOrders($this->get("request")->query->get("customer_id"))));
+        return new Response(json_encode($this->get("orders_model")->getListOrders($this->get("request")->request->get("customer_id"))));
+    }
+
+    /**
+     * delete customerAction
+     */
+    public function deleteCustomerAction()
+    {
+        $customerId = $this->get("request")->request->get("customerId");
+
+        $this->get("customer_model")->deleteCustomer($customerId);
+
+        return new Response("{status: $customerId}");
     }
 
     /**

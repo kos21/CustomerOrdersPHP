@@ -53,6 +53,16 @@ class CustomerModel extends AbstractModel
     }
 
     /**
+     * Delete customer
+     *
+     * @param integer $customerId
+     */
+    public function deleteCustomer($customerId)
+    {
+        $this->getEntityManager()->getRepository("CustomerOrderCustomerBundle:Customers")->deleteCustomer($customerId)->execute();
+    }
+
+    /**
      * Add customer
      *
      * @param string $name
